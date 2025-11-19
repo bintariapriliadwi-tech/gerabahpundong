@@ -1,0 +1,199 @@
+:root{
+  --bg: #cccccc;
+  --card: #bdbdbd;
+  --accent: #b25f2a; /* warna tanah liat */
+  --muted: #0c0c0c;
+  --accent-dark: #8a4a20;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 12px;
+  --max-width: 1000px;
+}
+
+*{box-sizing: border-box}
+html,body{
+  height:100%;
+  background-color: #cccccc;
+}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(circle at 10% 10%, #faf8a5 0%, var(--bg) 40%);
+  color:#222;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:80px; /* space for footer */
+}
+
+header{
+  text-align:center;
+  padding:48px 16px 28px;
+  background: linear-gradient(180deg, rgba(160, 77, 25, 0.06), transparent);
+}
+header h1{
+  margin:0 0 6px;
+  font-size:clamp(1.6rem, 3.6vw, 2.4rem);
+  letter-spacing:0.6px;
+  color:var(--accent-dark);
+}
+header p{
+  margin:0 auto;
+  max-width:760px;
+  color:var(--muted);
+}
+
+/* Nav */
+nav{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  padding:12px 16px;
+  background:transparent;
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+}
+nav a{
+  text-decoration:none;
+  color:var(--accent-dark);
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+  transition:all .18s ease;
+}
+nav a:hover{transform:translateY(-3px); background:var(--glass)}
+
+/* Layout for sections */
+section{
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:22px 18px;
+  background:transparent;
+  border-radius:10px;
+}
+section h2{
+  margin-top:0;
+  color:var(--accent-dark);
+  font-size:1.25rem;
+}
+
+/* Beranda hero text */
+#beranda p{max-width:900px}
+
+
+
+/* Produk: make it look like cards */
+#produk ul{
+  list-style:none;
+  padding:0;
+  margin:12px 0 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+#produk ul li{
+  background:var(--card);
+  padding:14px;
+  border-radius:var(--radius);
+  box-shadow:0 6px 18px rgba(22,22,22,0.06);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+#produk ul li::marker{display:none}
+
+/* Images inside the product list */
+#produk ul img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+  box-shadow:inset 0 -6px 18px rgba(0,0,0,0.04);
+}
+
+/* Harga tag */
+.harga{
+  margin-top:auto;
+  align-self:flex-start;
+  background: linear-gradient(90deg, rgba(178,95,42,0.12), rgba(138,74,32,0.06));
+  color:var(--accent-dark);
+  padding:8px 10px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+/* Kontak */
+#kontak p{margin:6px 0}
+
+/* Footer */
+footer{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  background:linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(199, 189, 172, 0.95));
+  padding:12px 16px;
+  text-align:center;
+  border-top:1px solid rgba(0,0,0,0.04);
+  font-size:0.95rem;
+}
+
+/* Floating WhatsApp-ish image link (the anchor at the end) */
+body > a{position:fixed; right:18px; bottom:86px; display:block; width:68px; height:68px; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(11,11,11,0.12);}
+body > a img{width:100%; height:100%; object-fit:cover; display:block}
+
+/* Small screens tweaks */
+@media (max-width:640px){
+  header{padding:32px 12px}
+  #produk ul img{height:160px}
+  nav{gap:10px}
+}
+
+/* Accessibility & helper classes */
+.visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+
+/* Tiny micro-interaction */
+li:hover{transform:translateY(-6px); transition:transform .22s cubic-bezier(.2,.9,.3,1)}
+
+/* If user uses long product descriptions */
+#produk li p{color:var(--muted); margin:0}
+
+/* Fix for images without alt or missing source */
+img{background:linear-gradient(180deg,hsl(24, 60%, 95%),lab(92.02% 4.75 1.69))}
+
+
+.btn-wa {
+  display: inline-block;
+  background: #25d366;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.btn-wa:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px);
+}
+
+/* Tombol melayang (pakai gambar) */
+.wa-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 99;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.wa-float img {
+  width: 100%;
+  height: 100%;
+}
+
